@@ -1,0 +1,5 @@
+[config]
+aws_access_key = YOUR_KEY_HERE
+aws_secret_key = YOUR_SECRET_KEY_HERE
+log_bucket = YOUR_BUCKET_NAME
+log_prefix = YOUR_LOG_PREFIX

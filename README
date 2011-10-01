@@ -1,0 +1,26 @@
+bucket_logs
+
+A simple tool to grab the s3 bucket log data from s3 and make it
+available to your python analysis tools or just print it as a table.
+
+To use:
+
+You'll need to install the boto library:
+
+$ easy_install boto
+
+And you'll need to set up a config.ini file that includes your aws
+access key, secret key, and the bucket and log prefix you're
+interested in. You can copy config.ini.sample and just fill in the
+blanks.
+
+Then you're ready to run:
+
+$ python bucketlogs.py
+
+At the top of the bucketlogs.py file is a list of fields that will be
+printed if you just run this script directly. If you instead use this
+script as a library you'll probably use the log_lines method to get an
+array of all of the log. Each item in the array is a dictionary that
+includes all of the log fields. See the comments on the log_lines
+method for a complete description of all of the log fields available.
