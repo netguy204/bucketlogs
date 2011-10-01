@@ -81,6 +81,7 @@ def cacheing_read(key):
 
     f = open(keyfile, 'w')
     data = key.read()
+    key.close()
     f.write(data)
     f.close()
     return data
@@ -90,9 +91,6 @@ def log_line_strs():
         for l in cacheing_read(k).splitlines():
             yield l
 
-# a single log lines looks like this:
-#
-# '98f47892754c53750667442db336a5e6b3b25e68712c12629a912cce89bc19c0 shared.wubo.org [30/Sep/2011:20:45:44 +0000] 68.33.141.12 - 61E18AED95A6F7FE REST.GET.OBJECT living_beyond_myself_hq_wk1.pdf "GET /shared.wubo.org/living_beyond_myself_hq_wk1.pdf HTTP/1.1" 200 - 4789784 54756967 4525 50 "-" "Mozilla/5.0 (Windows NT 6.0; rv:6.0.2) Gecko/20100101 Firefox/6.0.2" -'
 line_re = re.compile("(?P<bucketuser>\S+) (?P<bucket>\S+) \[(?P<date>[^\]]+)\] (?P<ip>\S+) (?P<requestor>\S+) (?P<requestid>\S+) (?P<operation>\S+) (?P<key>\S+) \"(?P<requesturi>[^\"]+)\" (?P<status>\S+) (?P<errorcode>\S+) (?P<bytessent>\S+) (?P<objectsize>\S+) (?P<totaltime>\S+) (?P<turnaroundtime>\S+) \"(?P<referrer>[^\"]+)\" \"(?P<useragent>[^\"]+)\"")
 def parse_line_str(line):
     global line_re
